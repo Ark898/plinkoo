@@ -35,47 +35,47 @@ const MULTIPLIERS: {[ key: number ]: number} = {
     17: 16
 }
 
-export const createObstacles = (): Obstacle[] => {
-    const obstacles: Obstacle[] = [];
-    const rows = 18;
-    for (let row = 2; row < rows; row++) {
-        const numObstacles = row + 1;
-        const y = 0 + row * 35;
-        const spacing = 36;
-        for (let col = 0; col < numObstacles; col++) {
-            const x = WIDTH / 2 - spacing * (row / 2 - col);
-            obstacles.push({x: pad(x), y: pad(y), radius: obstacleRadius });
-        }   
-    }
-    return obstacles;
-}
-
-
-// Circle obstacles
 // export const createObstacles = (): Obstacle[] => {
 //     const obstacles: Obstacle[] = [];
-//     const centerX = WIDTH / 2; // Center of the concentric circles
-//     const centerY = HEIGHT / 2; // Center of the concentric circles
-//     const numCircles = 9; // Number of concentric circles
-//     const initialObstacles = 8; // Base number of obstacles in the innermost circle
-//     const radiusIncrement = 35; // Distance between consecutive circles
-
-//     for (let circle = 1; circle <= numCircles; circle++) {
-//         const currentRadius = circle * radiusIncrement; // Radius of the current circle
-//         const obstaclesInThisCircle = initialObstacles + circle * 2; // Increase obstacles with radius
-//         for (let i = 0; i < obstaclesInThisCircle; i++) {
-//             const angle = (2 * Math.PI * i) / obstaclesInThisCircle; // Angle for the current obstacle
-//             const x = centerX + currentRadius * Math.cos(angle); // X-coordinate based on angle
-//             const y = centerY + currentRadius * Math.sin(angle); // Y-coordinate based on angle
-//             obstacles.push({
-//                 x: pad(x), // Adjusted X-coordinate
-//                 y: pad(y), // Adjusted Y-coordinate
-//                 radius: obstacleRadius // Radius of the obstacle
-//             });
-//         }
+//     const rows = 18;
+//     for (let row = 2; row < rows; row++) {
+//         const numObstacles = row + 1;
+//         const y = 0 + row * 35;
+//         const spacing = 36;
+//         for (let col = 0; col < numObstacles; col++) {
+//             const x = WIDTH / 2 - spacing * (row / 2 - col);
+//             obstacles.push({x: pad(x), y: pad(y), radius: obstacleRadius });
+//         }   
 //     }
 //     return obstacles;
-// };
+// }
+
+
+//Circle obstacles
+export const createObstacles = (): Obstacle[] => {
+    const obstacles: Obstacle[] = [];
+    const centerX = WIDTH / 2; // Center of the concentric circles
+    const centerY = HEIGHT / 2; // Center of the concentric circles
+    const numCircles = 9; // Number of concentric circles
+    const initialObstacles = 8; // Base number of obstacles in the innermost circle
+    const radiusIncrement = 35; // Distance between consecutive circles
+
+    for (let circle = 1; circle <= numCircles; circle++) {
+        const currentRadius = circle * radiusIncrement; // Radius of the current circle
+        const obstaclesInThisCircle = initialObstacles + circle * 2; // Increase obstacles with radius
+        for (let i = 0; i < obstaclesInThisCircle; i++) {
+            const angle = (2 * Math.PI * i) / obstaclesInThisCircle; // Angle for the current obstacle
+            const x = centerX + currentRadius * Math.cos(angle); // X-coordinate based on angle
+            const y = centerY + currentRadius * Math.sin(angle); // Y-coordinate based on angle
+            obstacles.push({
+                x: pad(x), // Adjusted X-coordinate
+                y: pad(y), // Adjusted Y-coordinate
+                radius: obstacleRadius // Radius of the obstacle
+            });
+        }
+    }
+    return obstacles;
+};
 
 
 

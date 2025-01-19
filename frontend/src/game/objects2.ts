@@ -35,6 +35,8 @@ const MULTIPLIERS: {[ key: number ]: number} = {
     17: 16
 }
 
+
+// triangle obstacles
 // export const createObstacles = (): Obstacle[] => {
 //     const obstacles: Obstacle[] = [];
 //     const rows = 18;
@@ -50,25 +52,8 @@ const MULTIPLIERS: {[ key: number ]: number} = {
 //     return obstacles;
 // }
 
-// export const createObstacles = (): Obstacle[] => {
-//     const obstacles: Obstacle[] = [];
-//     const rows = 18; // Number of rows
-//     const cols = 16; // Number of columns
-//     const spacingX = 50; // Horizontal spacing between obstacles
-//     const spacingY = 50; // Vertical spacing between obstacles
-//     const startX = WIDTH / 2 - (cols - 1) * spacingX / 2; // Center the grid horizontally
-//     const startY = 50; // Start position for the grid vertically
 
-//     for (let row = 0; row < rows; row++) {
-//         for (let col = 0; col < cols; col++) {
-//             const x = startX + col * spacingX;
-//             const y = startY + row * spacingY;
-//             obstacles.push({ x: pad(x), y: pad(y), radius: obstacleRadius });
-//         }
-//     }
-//     return obstacles;
-// };
-
+//Rectangle obstacles
 export const createObstacles = (): Obstacle[] => {
     const obstacles: Obstacle[] = [];
     const rows = 18; // Number of rows
