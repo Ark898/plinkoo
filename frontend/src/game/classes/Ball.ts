@@ -12,9 +12,10 @@ export class Ball {
     private ctx: CanvasRenderingContext2D;
     private obstacles: Obstacle[]
     private sinks: Sink[]
-    private onFinish: (index: number) => void;
+    private hitIndices: number[] = [];
+    private onFinish:(index: number) => void;
 
-    constructor(x: number, y: number, radius: number, color: string, ctx: CanvasRenderingContext2D, obstacles: Obstacle[], sinks: Sink[], onFinish: (index: number) => void) {
+    constructor(x: number, y: number, radius: number, color: string, ctx: CanvasRenderingContext2D, obstacles: Obstacle[], sinks: Sink[], onFinish: (index: number) => void, ) {
       this.x = x;
       this.y = y;
       this.radius = radius;
@@ -57,8 +58,7 @@ export class Ball {
           this.y += pad(Math.sin(angle) * overlap);
         }
       });
-  
-      // Collision with sinks
+
       for (let i = 0; i < this.sinks.length; i++) {
         const sink = this.sinks[i];
         if (
@@ -66,12 +66,15 @@ export class Ball {
             unpad(this.x) < sink.x + sink.width / 2 &&
             (unpad(this.y) + this.radius) > (sink.y - sink.height / 2)
         ) {
+            console.log(`Ball hit sink with index: ${i}`);
             this.vx = 0;
             this.vy = 0;
+            this.hitIndices.push(i);
             this.onFinish(i);
             break;
         }
       }
+      // this.displayHits();
     }
   
   }

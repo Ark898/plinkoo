@@ -64,10 +64,10 @@ export function Home() {
   return (
     <div className="">
       <div className="flex flex-col lg:flex-row  items-center justify-between ">
-        <Simulate />
+        {/* <Simulate /> */}
         <Quotes />
       </div>
-      <FoundIssue />
+
     </div>
   );
 }

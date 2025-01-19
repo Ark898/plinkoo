@@ -1,5 +1,5 @@
 import { HEIGHT, WIDTH, ballRadius, obstacleRadius, sinkWidth } from "../constants";
-import { Obstacle, Sink, createObstacles, createSinks } from "../objects";
+import { Obstacle, Sink, createObstacles, createSinks } from "../objects2";
 import { pad, unpad } from "../padding";
 import { Ball } from "./Ball";
 
@@ -11,7 +11,6 @@ export class BallManager {
     private sinks: Sink[]
     private requestId?: number;
     private onFinish?: (index: number,startX?: number) => void;
-    private hitIndices: number[] = [];
 
     constructor(canvasRef: HTMLCanvasElement, onFinish?: (index: number,startX?: number) => void) {
         this.balls = [];
@@ -26,8 +25,7 @@ export class BallManager {
     addBall(startX?: number) {
         const newBall = new Ball(startX || pad(WIDTH / 2 + 13), pad(50), ballRadius, 'red', this.ctx, this.obstacles, this.sinks, (index) => {
             this.balls = this.balls.filter(ball => ball !== newBall);
-            this.hitIndices.push(index);
-            this.onFinish?.(index)
+            this.onFinish?.(index, startX)
         });
         this.balls.push(newBall);
     }
@@ -71,10 +69,6 @@ export class BallManager {
             this.ctx.fillStyle = this.getColor(i).color;
             this.ctx.fillText((sink?.multiplier)?.toString() + "x", sink.x - 15 + sinkWidth / 2, sink.y);
         };
-    }
-
-    getHitIndices() {
-        return this.hitIndices;
     }
 
     draw() {
