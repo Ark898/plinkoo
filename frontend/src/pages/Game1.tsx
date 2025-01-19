@@ -73,9 +73,24 @@ export function Game1() {
         </div>
         {/* Navigation Button */}
 
-        <Button
+        {/* <Button
           className="px-4 mt-4 bg-green-500 text-white hover:bg-green-700"
           onClick={() => navigate("/game2")}
+        >
+          Go to Game 2
+        </Button> */}
+        <Button
+          className={`px-4 mt-4 text-white ${
+            sumOfIndices < 40
+              ? "bg-green-500 hover:bg-green-700"
+              : "bg-gray-400 cursor-not-allowed"
+          }`}
+          onClick={() => {
+            if (sumOfIndices < 40) {
+              navigate("/game2");
+            }
+          }}
+          disabled={sumOfIndices >= 40}
         >
           Go to Game 2
         </Button>
